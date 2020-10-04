@@ -1,0 +1,13 @@
+procedimiento para convertir un reporte que tiene datos importados a su equivalente, pero conectado a SSAS vía Live Connection.
+
+Primero que nada, tienen que tener ya el modelo tabular creado y los nombres de las tablas y de los campos deben ser los mismos en el modelo que tiene el Power BI Desktop y en el modelo Tabular (si alguno de los 2 modelos tienes más o menos campos que el otro no importa si no se están pintando en el reporte, lo importante es que los campos que están en el reporte si coincida el nombre del campo y el de la tabla).
+
+Luego seguir este procedimiento:
+
+https://ruiromanoblog.wordpress.com/2018/02/01/convert-a-power-bi-desktop-report-from-import-to-live-query/
+
+Que para resumirlo es abrir Power Query, eliminar todas las consultas y luego darle a cerrar y aplicar, entonces el reporte se queda sin consultas.
+
+En la entrada de blog que coloco dice que inmediatamente luego de borrar las consultas y guardar se puede configurar el Live Connection contra el tabular y ya queda lista la migración, pero así no anda, supongo que MS metió una validación, pero no deja hacer el live connection contra el tabular sino solo import mode porque supuestamente el reporte ya tiene un modelo de datos (aunque lo hayamos borrado), entonces, lo que hay que hacer es guardar así el reporte, luego cambiar la extension .PBIX por .ZIP, abrir el ZIP (no descomprimir) y eliminar los archivos "DataModel" y "SecurityBindings" (yo los elimino directamente desde el .zip sin descomprimirlo, porque a veces al descomprimir y volver a comprimir también se daña algo y el reporte no abre más), luego de esto si pueden abrir el archivo y ya está arreglado.
+
+PD: los modelos creados con Power BI desktop con la característica de formato de metadata mejorado tienen nivel de compatibilidad 1520 (igual que Power BI Premium), por lo cual no se pueden migrar a SSA Tabular ni a Azure Analysis Services porque esos llegan hasta nivel de compatibilidad 1500 , si tienen un modelo viejo que por casualidad nunca se migró al formato de metadata mejorado y a la vez apagan esa opción en PBI Desktop (mientras se pueda apagar) ese modelo queda en nivel 1465, con lo cual luego por tabular editor se puede subir a nivel 1500 y migrarlo a SSAS 2019 o Azure Analysis Services.
