@@ -1,10 +1,13 @@
-1) Convertir decimal con horas en X Dias.Y Horas
+1) Convertir decimal con horas en X Dias.Y Horas (solo para uso en tablas / matrix)
 Dax
 Var horas = [metrica con horas]
 var retorno = IF ( horas , FORMAT( DIVIDE(horas, 24), "#,##0" ) & "D:" & VALUE( FLOOR ( MOD( horas, 24 ) , 1) )  & "H")
+//Variacion para mostrar horas y minutos sin dias
+Var retorno = Format(Temp_int, "0" )  & " Hores : " & FORMAT(minutes_60, "00" )  & " Minutes"
+
 
 2) Convertir decimal con horas en x Horas.Y Minutos (en este caso se debe preparar la parte decimal de la métrica multiplicando por 0.6)
-Dax
+Dax (Acta para usar en graficos)
 var Temp = [etrica con horas]
 var temp_int = INT(Temp)
 var Minutes_100 = Temp - temp_int
