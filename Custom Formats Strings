@@ -15,4 +15,7 @@ var minutes_60 = Minutes_100 *(0.6)
 return temp_int + minutes_60
 
 Cadena de formato
-#" Hores ".##" Minutes"
+#" Horas ".##" Minutos" (25 Horas .53 Minutos)
+0" Horas ".00" Minutos" (25 Horas .53 Minutos)
+Alternativa corta
+
